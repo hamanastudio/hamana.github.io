@@ -1,0 +1,36 @@
+/* フッター全体のスタイル */
+.footer {
+    background-color: #f8f8f8; /* 背景色（必要なら変更可） */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Contact のスタイル */
+.footer-contact h3 {
+    font-family: 'Courier New', Courier, monospace; /* Typewriter フォント */
+    font-size: 18px; /* フォントサイズ */
+    font-weight: normal; /* 細文字 */
+    color: black; /* テキストカラー */
+}
+/* Contact のスタイル */
+.footer-contact {
+    text-align: center;
+}
+
+/* Email のスタイル */
+.footer-contact p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    color: black;
+}
+
+/* Email のリンクのホバースタイル */
+.footer-contact p a {
+    color: black;
+    text-decoration: none; /* 下線を消す（必要なら） */
+}
+
+.footer-contact p a:hover {
+    color: gray; /* ホバー時にグレーにする */
+}
+
