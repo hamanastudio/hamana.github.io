@@ -1,0 +1,17 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    min-height: calc(100vh - 60px);
+}
+
+.site-footer {
+    height: 60px;
+    text-align: center;
+    padding: 20px 0;
+    background-color: #f2f2f2;
+    position: relative;
+}
