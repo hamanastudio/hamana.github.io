@@ -1,0 +1,754 @@
+/* 全体のスタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace; /* Typewriter風フォント */
+}
+
+/* ヘッダーのスタイル */
+header {
+    background-color: rgb(255, 255, 255); /* ヘッダーの背景色 */
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white; /* 背景色がないと下の要素と重なるときに文字が見えなくなる */
+    z-index: 1000; /* 他の要素より前面に出す */
+    
+}
+
+/* ヘッダー内のコンテナ */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.site-footer {
+    text-align: center;
+    font-size: 8pt;
+    font-family: 'Courier New', Courier, monospace; /* typewriter風フォント */
+    padding: 20px 0;
+    color: #333;
+  }
+  
+
+/* ロゴ */
+.logo img {
+    width: 250px; /* ロゴの幅を大きく設定 */
+    margin: 0 auto;
+}
+.logo {
+    position: absolute;
+    top: 20%; /* 縦方向の中央 */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+    /* ABOUTページの背景色 */
+    .about {
+        background-color: white; /* 背景色をホワイトに設定 */
+    }
+
+
+
+/* ハンバーガーメニュー */
+.hamburger-menu {
+    font-size: 30px;
+    cursor: pointer;
+    display: block;
+}
+
+/* ハンバーガーメニューのドロップダウン */
+/* 初期状態（非表示） */
+.hamburger-dropdown {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* transitionを追加 */
+  }
+  
+  /* アニメーションのキーフレーム */
+  @keyframes dropdownFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+    /* アニメーション定義 */
+    @keyframes fadeSlideIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+  /* リスト全体の共通スタイル（すでにある場合は追加だけ） */
+.hamburger-dropdown ul li {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: fadeSlideIn 0.6s ease forwards;
+  }
+  
+  
+  /* 遅延をつけて順番に表示させる */
+  .hamburger-dropdown ul li:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .hamburger-dropdown ul li:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .hamburger-dropdown ul li:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .hamburger-dropdown ul li:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .hamburger-dropdown ul li:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  
+  /* 表示時に一度だけアニメーション */
+  .hamburger-dropdown.show {
+    display: block;
+    animation: dropdownFadeIn 0.8s ease-out forwards;
+  }
+  
+
+.hamburger-dropdown ul {
+    list-style-type: none;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.hamburger-dropdown ul li a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    padding: 10px;
+}
+.hamburger-dropdown.open {
+    display: block; /* .open クラスが追加された時に表示 */
+}
+
+
+.hamburger-dropdown ul li a:hover {
+    color: #a0a0a0; /* 文字の色を薄いグレーに変更 */
+}
+
+/* ヒーローセクション1 */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    color: white;
+}
+/* hero-image はすでに定義済みなので使い回しでOK */
+
+/* 画像ラッパー */
+/* ベース（モバイルファースト） */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* モバイルでもフルスクリーン */
+    overflow: hidden;
+  }
+  
+  
+  .hero-image-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-out forwards;
+    animation-delay: 0.3s;
+  }
+  /* モバイル時の画像比率を元に戻す */
+@media (max-width: 768px) {
+    .hero-image {  /* 実際のクラス名に置き換えてね */
+      width: 100%;
+      height: auto;
+      object-fit: contain; /* 必要なら cover → contain に変更 */
+    }
+  }
+  
+ 
+/* Exploreボタン（文字のみ、背景なし） */
+.hero1 .explore-btn {
+    position: absolute;
+    top: 50%; /* hero1内で上から60%の位置に配置（中央よりちょい下） */
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    border: none;
+    z-index: 2;
+    transition: color 0.3s ease; /* 色の変化に遷移を追加 */
+    /* 他のスタイルはそのままでOK */
+}
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px); /* 少し下からフェードイン */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+
+/* ホバー時に灰色背景と白文字 */
+.hero1 .explore-btn:hover {
+    color: rgb(0, 0, 0); /* 文字色を白に */
+    transition: background-color 0.3s ease, color 0.3s ease; /* スムーズな遷移 */
+}
+  
+  /* PCサイズで100%に拡大して中央表示 */
+  @media screen and (min-width: 769px) {
+    .hero-image {
+      transform: scale(1.0);
+      transform-origin: center;
+    }
+  }
+  
+@media only screen and (max-width: 600px) {
+    .hero-image {
+        transform: scale(1.1) translateY(-10%); /* 画像を10%拡大し、10%上に移動 */
+    }
+
+    .explore-btn {
+        font-size: 12pt; /* "Explore Our Collection"のフォントサイズを10ptに設定 */
+    }
+}
+@media screen and (min-width: 769px) {
+    .hero2-image {
+      transform: scale(0.8) translateY(20%);
+      transform-origin: center top;
+    }
+  }
+
+
+/* ヒーローセクション2 共通スタイル */
+.hero2 {
+    display: flex;
+    position: relative;
+    text-align: center;
+    background-color: rgb(255, 255, 255); /* fallback 背景色 */
+    align-items: center;
+    justify-content: flex-start;
+    padding: 6rem; /* 上下左右の余白 */
+    box-sizing: border-box;
+    
+}
+
+/* hero2 のラッパーを横並びにする */
+.hero2-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: start; /* 左詰め（必要に応じてcenterでもOK） */
+    gap: 2vw; /* 画像とボタンの間隔 */
+    padding-left: 2vw; /* 余白 */
+    height: 100vh;
+    position: relative;
+  }
+
+  .hero2-image {
+    position: absolute;
+    left: 0;
+    width: auto;
+    height: auto;
+    max-height: calc(40vh * 1.3 * 1.2); /* 30%大きく */
+    margin: 0 0 2vw 2vw;
+    object-fit: contain;
+
+    /* 最初は非表示 */
+    opacity: 0;
+    transition: opacity 1.5s ease-out;
+}
+
+/* show クラスが追加されたときにフェードイン */
+.hero2-image.show {
+    opacity: 1;
+}
+
+
+  
+@media screen and (max-width: 768px) {
+    .hero2-wrapper {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3vw;
+      padding: 0;
+    }
+  
+    .hero2-image {
+      max-width: 50vw;
+      margin: 0;
+  
+      /* スマホでも fade-in させたい場合 */
+      opacity: 0;
+      animation: fadeIn 1.5s ease-out forwards;
+      animation-delay: 0.5s;
+    }
+  }
+  
+
+
+.explore-btn.hero2-style {
+    position: absolute;             /* 位置を制御するために追加 */
+    top: 40%;                       /* 上から20%下げる */
+    left: 40%;   /* ← ここを追加／修正 */
+    color: rgb(0, 0, 0);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    border: none;
+    opacity: 0;                          /* 初期は非表示 */
+    transform: translateY(50px);        /* 下にずらしておく */
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+  .explore-btn.hero2-style.show {
+    opacity: 1;
+    transform: translateY(0);           /* 元の位置に戻す */
+}
+
+  .explore-btn.hero2-style:hover {
+    color: rgb(164, 164, 164);
+  }
+  
+
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* モバイル時の表示調整 */
+@media (max-width: 768px) {
+    #navbar {
+        display: none; /* モバイルでは右側のナビゲーション非表示 */
+    }
+
+    .hamburger-menu {
+        display: block; /* ハンバーガーメニューを表示 */
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .cta-button {
+        font-size: 12px;
+    }
+
+}
+
+/* タイプライタータイトル */
+.collection-title {
+    padding: 40px 20px 20px 20px;
+    font-size: 24px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #333;
+    text-align: left;
+    margin-left: 10%; 
+}
+
+/* タイプライター本体 */
+.typewriter {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    left: 10%; /* 画面幅の10%右に位置 */
+}
+
+.collection-note {
+    display: block;          /* 各行が縦に並ぶように */
+    line-height: 1.8;        /* 行間のゆとり */
+    max-width: 80%;          /* テキストの読みやすさ向上 */
+  }
+  
+
+  .collection-title-right {
+    display: flex;
+    flex-direction: column;         /* 縦に並べる */
+    align-items: flex-end;          /* 右寄せ */
+    padding: 60px 20px 60px 20px;
+    font-size: 12pt;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
+    text-align: right;
+    margin-right: 10%;              /* 右から30%の余白を取る（＝全体の70%に位置） */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 2.5s ease, transform 2.5s ease;
+  }
+  .collection-title-right.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .collection-note {
+    display: block;
+    line-height: 1.8;
+  }
+  
+  @media (max-width: 768px) {
+    .collection-title-right {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, 0); /* 水平方向の中央寄せ */
+      text-align: center;
+      width: 100%;
+    }
+  }
+.collection-container { /* 親要素のクラス名 */
+  position: relative;
+}
+  
+
+/* Aboutセクション */
+.about-section {
+    background-color: #ffffff; /* 背景色 */
+    padding: 50px 20px;
+    font-family: 'Courier New', Courier, monospace; /* Typewriterフォント */
+}
+
+.about-section .container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+    font-weight: normal; /* 太字を削除して細文字に */
+}
+
+h2 {
+    font-size: 24px;
+    margin-top: 20px;
+    font-weight: normal; /* 太字を削除して細文字に */
+}
+
+.bio-text {
+    font-size: 12pt;
+    line-height: 1.6;
+    color: #333;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.awards ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.awards li {
+    font-size: 12pt;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+
+/* モバイル対応のためのメディアクエリ */
+@media only screen and (max-width: 600px) {
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo img {
+        height: 40px;
+    }
+
+    nav ul {
+        padding-left: 0;
+    }
+
+    nav ul li {
+        display: block;
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    .about-section {
+        padding: 10px;
+    }
+
+    .content {
+        padding: 0;
+    }
+
+    .story-text, .bio-text {
+        font-size: 14px;
+    }
+
+    h1, h2 {
+        font-size: 18px;
+    }
+
+    ul li {
+        font-size: 14px;
+    }
+}
+
+
+header {
+    background-color: #fff;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+/* ナビゲーション */
+#navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+#navbar ul li {
+    padding: 10px;
+}
+
+#navbar ul li a {
+    text-decoration: none;
+    color: #000;
+}
+
+/* ポートフォリオグリッド */
+.portfolio-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 20px;
+  }
+  
+  .portfolio-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+/* コレクションページの全体的なスタイル */
+.collections-section {
+    text-align: center;
+    padding: 50px;
+}
+
+.collections-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3列のグリッド */
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.collection-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.collection-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+
+
+/* ベースのスタイル */
+body {
+    font-family: 'Courier New', Courier, monospace; /* Typewriter風のフォント */
+    background-color: #ffffff; /* 背景色 */
+    color: #333;
+    margin: 0;
+    padding-top: 100px; /* ヘッダーの高さ分スペースを空ける（調整可能） */
+}
+
+header {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    text-align: center;
+}
+
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.hero-section {
+    background-image: url('images/look1-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    margin-top: 40px;
+}
+
+
+
+.contact-section {
+    text-align: left;
+    padding: 60px 20px;
+    background-color: white;
+    margin-left: 10%; /* 全体を10%右に寄せる */
+}
+
+.contact-row {
+    display: flex;
+    align-items: center;
+    gap: 24px; /* Contact UsとInstagramの間のスペース */
+}
+
+.contact-heading {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.contact-instagram {
+    font-size: 14px;
+    color: #000000;
+    margin: 5vh 0 0 0; /* 上から5%の余白を追加 */
+}
+
+.contact-email {
+    font-size: 14px;
+    color: #000000;
+    margin-top: 1.5em; /* Instagramの下に空き */
+}
+
+.contact-email a:hover,
+.contact-instagram a:hover {
+    text-decoration: none;
+    color: #999; /* ホバー時に薄いグレーに */
+}
+
+.contact-email a,
+.contact-instagram a {
+    color: #000000; /* リンクカラーを黒に */
+    text-decoration: none; /* 下線を消す */
+}
+
+.contact-email a:hover,
+.contact-instagram a:hover {
+    color: #888888; /* ホバー時に薄いグレーに */
+}
+
+/* タブレット以上のサイズに対応 */
+@media (min-width: 768px) {
+    .contact-heading {
+        font-size: 24px;
+    }
+
+    .contact-email,
+    .contact-instagram {
+        font-size: 18px;
+    }
+}
+
+
+
+/* リンクのデザイン */
+a {
+    text-decoration: none;  /* アンダーバーを削除 */
+    color: black;           /* 文字色をブラックに設定 */
+  }
+  
+  /* リンクにホバーしたときのデザイン */
+  a:hover {
+    color: #333;            /* ホバー時の文字色を少し濃い色に変更 */
+  }
+  
+
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+main.portfolio {
+    padding: 20px;
+}
+
+/* ヒーローセクションのスタイル */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 400px; /* セクションの高さ */
+    margin-bottom: 30px;
+}
+
+
