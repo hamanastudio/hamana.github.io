@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAMANA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <!-- ハンバーガーメニュー -->
+            <div class="hamburger-menu" id="hamburger-menu">
+                &#9776;
+            </div>
+
+            <!-- ロゴ（クリックでHomeに遷移） -->
+            <a href="index.html" class="logo">
+                <img src="hamana-logo.png" alt="HAMANA Logo">
+            </a>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション1 -->
+    <section class="hero hero1">
+        <div class="hero-image-wrapper">
+            <picture>
+                <img src="Quilted Ghillie Vest.jpg" alt="メインビジュアル" class="hero-image fade-in" loading="lazy">
+            </picture>
+            <a href="design-development.html" class="explore-btn">Explore Design Development</a>
+        </div>
+    </section>
+
+    <!-- パンクズ風タイトル -->
+    <div class="collection-title">
+        <span class="typewriter">MA Collection'25</span>
+    </div>
+    <div class="collection-title-right">
+        <span class="collection-note">HAMANA's last collection transforms military wear through the lens of</span>
+        <span class="collection-note">Japanese animism, blending functionality with spiritual storytelling.</span>
+    </div>
+
+    <!-- ヒーローセクション2 -->
+    <section class="hero hero2">
+        <div class="hero-image-wrapper">
+            <img src="Vest A5.jpg" alt="セカンドビジュアル" class="hero-image hero2-image fade-in" loading="lazy">
+            
+            <!-- Lookbookへのリンクボタン -->
+            <a href="collections.html" class="explore-btn hero2-style">Lookbook</a>
+        </div>
+    </section>
+
+    <!-- ハンバーガーメニューのドロップダウン -->
+    <div id="hamburger-dropdown" class="hamburger-dropdown">
+        <ul>
+            <li><a href="index.html" class="home-link">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="design-development.html">Design Development</a></li>
+            <li><a href="collections.html">Lookbook</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <script src="scripts.js"></script>
+
+    <footer class="site-footer">
+        <p>© 2025 HAMANA</p>
+    </footer>
+
+    <script>
+        // Typewriter animation restart
+        const typewriter = document.querySelector('.typewriter');
+
+        function restartAnimation() {
+            typewriter.classList.remove('typewriter');
+            // 強制再描画（reflow）を使ってクラス再適用
+            void typewriter.offsetWidth;
+            typewriter.classList.add('typewriter');
+        }
+
+        // 10秒ごとに再実行（5秒アニメーション + 5秒休憩）
+        setInterval(restartAnimation, 10000);
+
+
+
+        // Intersection Observer for fade-in effect
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                    // 一度表示されたら監視解除（1回だけフェードイン）
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.5 // 50%見えたら発動
+        });
+
+        const target = document.querySelector('.collection-title-right');
+        if (target) observer.observe(target);
+
+
+ 
+
+
+        // Scroll event to show button
+        window.addEventListener('scroll', function () {
+            const target = document.querySelector('.explore-btn.hero2-style');
+            const triggerPoint = window.innerHeight * 0.9; // 90%くらいに達したら表示
+            const elementTop = target.getBoundingClientRect().top;
+
+            if (elementTop < triggerPoint) {
+                target.classList.add('show');
+            }
+        });
+
+
+
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger-menu');
+        const dropdown = document.getElementById('hamburger-dropdown');
+
+        hamburger.addEventListener('click', () => {
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+                dropdown.style.display = 'none';
+            } else {
+                // アニメーションをリセット
+                dropdown.classList.remove('show');
+                void dropdown.offsetWidth; // 強制再描画（リフロー）
+                dropdown.style.display = 'block';
+                dropdown.classList.add('show');
+            }
+        });
+    </script>
+</body>
+
+</html>
